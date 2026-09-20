@@ -8,3 +8,31 @@
 🔒 Move protection: a filled cell is disabled, so it can't be overwritten
 📱 Responsive layout using vmin units, so it scales on phones, tablets and desktops
 🪶 Zero dependencies: no frameworks, no build step, no installs
+
+🕹️ How to Play
+1. O always goes first, then players alternate with X.
+2. Click any empty cell to place your mark.
+3. The first player to get three in a row (horizontally, vertically or diagonally) wins.
+4. If all nine cells fill up with no winner, the game is a draw.
+5. Click New Game (or Reset Game at any time) to play again.
+
+ 🧠 How It Works
+Turn tracking. A boolean turnO flips after every move to decide whether the next mark is O or X. A count variable tracks how many moves have been played, which is how a draw is detected.
+Win detection. The board is a list of nine cells indexed 0–8. All eight winning combinations are stored in a winPatterns array:
+js
+const winPatterns = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],   // rows
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],   // columns
+  [0, 4, 8], [2, 4, 6],              // diagonals
+];
+After each move, checkWinner() loops through these patterns and checks whether all three cells are non-empty and identical.
+End of game. When someone wins or the board fills up, the remaining cells are disabled and a result message with a New Game button appears.
+
+🛣️ Ideas for the Future
+ * Score tracking across multiple rounds
+ * Single-player mode with a computer opponent (random, then minimax)
+ * Highlight the winning line
+ * Choose who goes first
+ * Dark / light theme toggle
+ * Sound effects and subtle animations
+ *  Keyboard accessibility improvements
